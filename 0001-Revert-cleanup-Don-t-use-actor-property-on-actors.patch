@@ -1,0 +1,98 @@
+From b75419a6e42853b71cfb8587dfe20edd3ef00548 Mon Sep 17 00:00:00 2001
+From: Artem Polishchuk <ego.cordatus@gmail.com>
+Date: Mon, 9 Sep 2019 23:32:42 +0300
+Subject: [PATCH] Revert "cleanup: Don't use actor property on actors"
+
+This reverts commit 8eed5b32660b601e09c2f35279e3e87eec15914b.
+---
+ dbusMenu.js            | 10 +++++-----
+ indicatorStatusIcon.js |  9 ++++++---
+ metadata.json          |  4 ++--
+ 3 files changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/dbusMenu.js b/dbusMenu.js
+index 60a5cec..2aac51f 100644
+--- a/dbusMenu.js
++++ b/dbusMenu.js
+@@ -478,7 +478,7 @@ const MenuItemFactory = {
+ 
+         if (shellItem instanceof PopupMenu.PopupMenuItem) {
+             shellItem._icon = new St.Icon({ style_class: 'popup-menu-icon', x_align: St.Align.END })
+-            shellItem.add(shellItem._icon, { x_align: St.Align.END })
++            shellItem.actor.add(shellItem._icon, { x_align: St.Align.END })
+             shellItem.label.get_parent().child_set(shellItem.label, { expand: true })
+         }
+ 
+@@ -619,7 +619,7 @@ const MenuItemFactory = {
+     },
+ 
+     _updateVisible() {
+-        this.visible = this._dbusItem.property_get_bool("visible")
++        this.actor.visible = this._dbusItem.property_get_bool("visible")
+     },
+ 
+     _updateSensitive() {
+@@ -663,13 +663,13 @@ const MenuUtils = {
+         for (let i = 0; i < family.length; ++i) {
+             if (family[i]._dbusItem == dbusItem) {
+                 // now, remove it
+-                menu.box.remove_child(family[i])
++                menu.box.remove_child(family[i].actor)
+ 
+                 // and add it again somewhere else
+                 if (newpos < family.length && family[newpos] != family[i])
+-                    menu.box.insert_child_below(family[i], family[newpos])
++                    menu.box.insert_child_below(family[i].actor, family[newpos].actor)
+                 else
+-                    menu.box.add(family[i])
++                    menu.box.add(family[i].actor)
+ 
+                 // skip the rest
+                 return
+diff --git a/indicatorStatusIcon.js b/indicatorStatusIcon.js
+index b36155e..42b1009 100644
+--- a/indicatorStatusIcon.js
++++ b/indicatorStatusIcon.js
+@@ -39,11 +39,11 @@ class AppIndicators_IndicatorStatusIcon extends PanelMenu.Button {
+ 
+         this._iconBox = new AppIndicator.IconActor(indicator, Panel.PANEL_ICON_SIZE + 6);
+         if (!this._box) // Gnome Shell 3.10
+-            this.add_actor(this._box = new St.BoxLayout());
++            this.actor.add_actor(this._box = new St.BoxLayout());
+ 
+         this._box.destroy_all_children();
+         this._box.add_actor(this._iconBox);
+-        Util.connectSmart(this, 'button-press-event', this, '_boxClicked')
++        Util.connectSmart(this.actor, 'button-press-event', this, '_boxClicked')
+ 
+         Util.connectSmart(this._indicator, 'ready',  this, '_display')
+         Util.connectSmart(this._indicator, 'menu',  this, '_updateMenu')
+@@ -84,7 +84,10 @@ class AppIndicators_IndicatorStatusIcon extends PanelMenu.Button {
+     }
+ 
+     _updateStatus() {
+-        this.visible = this._indicator.status != AppIndicator.SNIStatus.PASSIVE;
++        if (this._indicator.status != AppIndicator.SNIStatus.PASSIVE)
++            this.actor.show()
++        else
++            this.actor.hide()
+     }
+ 
+     _updateMenu() {
+diff --git a/metadata.json b/metadata.json
+index a1fb563..0916f6d 100644
+--- a/metadata.json
++++ b/metadata.json
+@@ -1,7 +1,7 @@
+ {
+     "shell-version": [
+-        "3.33",
+-        "3.34"
++        "3.31",
++        "3.32"
+     ],
+     "uuid": "appindicatorsupport@rgcjonas.gmail.com",
+     "name": "KStatusNotifierItem/AppIndicator Support",
+-- 
+2.21.0
+

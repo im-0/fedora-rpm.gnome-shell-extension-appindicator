@@ -2,7 +2,7 @@
 
 Name:           gnome-shell-extension-appindicator
 Version:        30
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        AppIndicator/KStatusNotifierItem support for GNOME Shell
 
 # No license files
@@ -10,6 +10,8 @@ Summary:        AppIndicator/KStatusNotifierItem support for GNOME Shell
 License:        GPLv2
 URL:            https://github.com/ubuntu/gnome-shell-extension-appindicator
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+# Fix regression for GNOME 3.32 version
+Patch0:         0001-Revert-cleanup-Don-t-use-actor-property-on-actors.patch
 
 Requires:       gnome-shell >= 3.14.0
 BuildArch:      noarch
@@ -34,6 +36,9 @@ cp -axv *.js metadata.json interfaces-xml   %{buildroot}%{_datadir}/gnome-shell/
 %{_datadir}/gnome-shell/extensions/%{uuid}
 
 %changelog
+* Mon Sep 09 2019 Artem Polishchuk <ego.cordatus@gmail.com> - 30-8
+- Fix regression for GNOME 3.32 version
+
 * Sun Sep 01 2019 Artem Polishchuk <ego.cordatus@gmail.com> - 30-7
 - Initial package
 
