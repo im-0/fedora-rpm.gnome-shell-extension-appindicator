@@ -37,7 +37,7 @@ cp -axv *.js metadata.json interfaces-xml   %{buildroot}%{_datadir}/gnome-shell/
 
 %changelog
 * Mon Sep 09 2019 Artem Polishchuk <ego.cordatus@gmail.com> - 30-8
-- Fix regression for GNOME 3.32 version
+- Fix regression for GNOME =< 3.32 version
 
 * Sun Sep 01 2019 Artem Polishchuk <ego.cordatus@gmail.com> - 30-7
 - Initial package
