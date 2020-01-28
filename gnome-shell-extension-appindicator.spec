@@ -2,7 +2,7 @@
 
 Name:           gnome-shell-extension-appindicator
 Version:        30
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        AppIndicator/KStatusNotifierItem support for GNOME Shell
 
 # No license files
@@ -34,6 +34,9 @@ cp -axv *.js metadata.json interfaces-xml   %{buildroot}%{_datadir}/gnome-shell/
 %{_datadir}/gnome-shell/extensions/%{uuid}
 
 %changelog
+* Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 30-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Sun Sep 01 2019 Artem Polishchuk <ego.cordatus@gmail.com> - 30-7
 - Initial package
 
