@@ -1,16 +1,16 @@
-%global uuid    appindicatorsupport@rgcjonas.gmail.com
+%global uuid appindicatorsupport@rgcjonas.gmail.com
 
-Name:           gnome-shell-extension-appindicator
-Version:        33
-Release:        2%{?dist}
-Summary:        AppIndicator/KStatusNotifierItem support for GNOME Shell
+Name: gnome-shell-extension-appindicator
+Version: 33
+Release: 2%{?dist}
+Summary: AppIndicator/KStatusNotifierItem support for GNOME Shell
+BuildArch: noarch
 
-License:        GPLv2
-URL:            https://github.com/ubuntu/gnome-shell-extension-appindicator
-Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
-BuildArch:      noarch
+License: GPLv2
+URL: https://github.com/ubuntu/gnome-shell-extension-appindicator
+Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
-Requires:       gnome-shell >= 3.14.0
+Requires: gnome-shell >= 3.14.0
 
 %description
 This extension integrates Ubuntu AppIndicators and KStatusNotifierItems (KDE's
@@ -22,7 +22,7 @@ You can use gnome-tweaks (additional package) or run in terminal:
 
 
 %prep
-%autosetup
+%autosetup -p1
 
 
 %install
