@@ -1,8 +1,8 @@
 %global uuid appindicatorsupport@rgcjonas.gmail.com
 
 Name: gnome-shell-extension-appindicator
-Version: 34
-Release: 2%{?dist}
+Version: 35
+Release: 1%{?dist}
 Summary: AppIndicator/KStatusNotifierItem support for GNOME Shell
 BuildArch: noarch
 
@@ -38,6 +38,9 @@ cp -axv *.js metadata.json interfaces-xml \
 
 
 %changelog
+* Fri Mar 19 2021 Artem Polishchuk <ego.cordatus@gmail.com> - 35-1
+- build(update): 35
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 34-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
