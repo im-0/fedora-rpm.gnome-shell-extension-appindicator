@@ -2,7 +2,7 @@
 
 Name: gnome-shell-extension-appindicator
 Version: 35
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: AppIndicator/KStatusNotifierItem support for GNOME Shell
 BuildArch: noarch
 
@@ -11,6 +11,7 @@ URL: https://github.com/ubuntu/gnome-shell-extension-appindicator
 Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 Requires: gnome-shell >= 3.14.0
+Requires: libappindicator-gtk3
 
 %description
 This extension integrates Ubuntu AppIndicators and KStatusNotifierItems (KDE's
@@ -38,6 +39,9 @@ cp -axv *.js metadata.json interfaces-xml \
 
 
 %changelog
+* Tue Apr 27 2021 Artem Polishchuk <ego.cordatus@gmail.com> - 35-2
+- build(add dep): libappindicator-gtk3
+
 * Fri Mar 19 2021 Artem Polishchuk <ego.cordatus@gmail.com> - 35-1
 - build(update): 35
 
