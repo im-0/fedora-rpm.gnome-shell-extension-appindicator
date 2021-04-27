@@ -1,8 +1,8 @@
 %global uuid appindicatorsupport@rgcjonas.gmail.com
 
 Name: gnome-shell-extension-appindicator
-Version: 35
-Release: 2%{?dist}
+Version: 37
+Release: 1%{?dist}
 Summary: AppIndicator/KStatusNotifierItem support for GNOME Shell
 BuildArch: noarch
 
@@ -39,6 +39,9 @@ cp -axv *.js metadata.json interfaces-xml \
 
 
 %changelog
+* Tue Apr 27 2021 Artem Polishchuk <ego.cordatus@gmail.com> - 37-1
+- build(update): 37
+
 * Tue Apr 27 2021 Artem Polishchuk <ego.cordatus@gmail.com> - 35-2
 - build(add dep): libappindicator-gtk3
 
