@@ -2,7 +2,7 @@
 
 Name: gnome-shell-extension-appindicator
 Version: 37
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: AppIndicator/KStatusNotifierItem support for GNOME Shell
 BuildArch: noarch
 
@@ -39,6 +39,9 @@ cp -axv *.js metadata.json interfaces-xml \
 
 
 %changelog
+* Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 37-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Tue Apr 27 2021 Artem Polishchuk <ego.cordatus@gmail.com> - 37-1
 - build(update): 37
 
