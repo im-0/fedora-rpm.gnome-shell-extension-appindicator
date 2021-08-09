@@ -10,6 +10,8 @@ License: GPLv2
 URL: https://github.com/ubuntu/gnome-shell-extension-appindicator
 Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
+BuildRequires: make glib2 gettext
+
 Requires: gnome-shell >= 3.14.0
 Requires: libappindicator-gtk3
 
