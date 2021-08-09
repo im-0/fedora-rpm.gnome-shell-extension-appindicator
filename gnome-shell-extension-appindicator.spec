@@ -1,8 +1,8 @@
 %global uuid appindicatorsupport@rgcjonas.gmail.com
 
 Name: gnome-shell-extension-appindicator
-Version: 37
-Release: 2%{?dist}
+Version: 40
+Release: 1%{?dist}
 Summary: AppIndicator/KStatusNotifierItem support for GNOME Shell
 BuildArch: noarch
 
@@ -12,6 +12,12 @@ Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 Requires: gnome-shell >= 3.14.0
 Requires: libappindicator-gtk3
+
+# gnome-shell-extension-appindicator version >= 40 now also includes
+# support for legacy X11 tray icons and the topicons(-plus) extensions
+# are no longer maintained upstream
+Provides:  gnome-shell-extension-topicons-plus = %{version}-%{release}
+Obsoletes: gnome-shell-extension-topicons-plus <= 27-9
 
 %description
 This extension integrates Ubuntu AppIndicators and KStatusNotifierItems (KDE's
@@ -26,9 +32,14 @@ You can use gnome-tweaks (additional package) or run in terminal:
 %autosetup -p1
 
 
+%build
+%make_build
+
+
 %install
 mkdir -p %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}
-cp -axv *.js metadata.json interfaces-xml \
+cp -axv --parents *.js metadata.json interfaces-xml locale/*/LC_MESSAGES/*.mo \
+                  schemas/*.xml schemas/gschemas.compiled                     \
     %{buildroot}%{_datadir}/gnome-shell/extensions/%{uuid}/
 
 
@@ -39,6 +50,12 @@ cp -axv *.js metadata.json interfaces-xml \
 
 
 %changelog
+* Mon Aug  9 2021 Hans de Goede <hdegoede@redhat.com> - 40-1
+- Update to latest upstream release: v40 (rhbz#1971135)
+- This includes legacy X11 tray-icon support, make
+  gnome-shell-extension-appindicator obsolete and provide
+  gnome-shell-extension-topicons-plus
+
 * Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 37-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
