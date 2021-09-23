@@ -1,0 +1,29 @@
+From 358c3aafebfdca21010b1b1e735d1ee006c2ec85 Mon Sep 17 00:00:00 2001
+From: Ivan Mironov <mironov.ivan@gmail.com>
+Date: Thu, 23 Sep 2021 11:26:22 +0300
+Subject: [PATCH] Add support for GNOME 41
+
+This is a trivial change. Tested on Fedora 35 beta.
+
+Fixes https://github.com/ubuntu/gnome-shell-extension-appindicator/issues/307
+---
+ metadata.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/metadata.json b/metadata.json
+index 294953133a00..31cee8937ca1 100644
+--- a/metadata.json
++++ b/metadata.json
+@@ -4,7 +4,8 @@
+         "3.34",
+         "3.36",
+         "3.38",
+-        "40"
++        "40",
++        "41"
+     ],
+     "gettext-domain": "AppIndicatorExtension",
+     "settings-schema": "org.gnome.shell.extensions.appindicator",
+-- 
+2.32.0
+

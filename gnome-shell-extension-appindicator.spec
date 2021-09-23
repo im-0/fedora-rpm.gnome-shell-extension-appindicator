@@ -2,13 +2,15 @@
 
 Name: gnome-shell-extension-appindicator
 Version: 40
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: AppIndicator/KStatusNotifierItem support for GNOME Shell
 BuildArch: noarch
 
 License: GPLv2
 URL: https://github.com/ubuntu/gnome-shell-extension-appindicator
 Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+
+Patch0: 0001-Add-support-for-GNOME-41.patch
 
 BuildRequires: make glib2 gettext
 
@@ -52,6 +54,9 @@ cp -axv --parents *.js metadata.json interfaces-xml locale/*/LC_MESSAGES/*.mo \
 
 
 %changelog
+* Thu Sep 23 2021 Ivan Mironov <mironov.ivan@gmail.com> - 40-2
+- Add support for GNOME 41
+
 * Mon Aug  9 2021 Hans de Goede <hdegoede@redhat.com> - 40-1
 - Update to latest upstream release: v40 (rhbz#1971135)
 - This includes legacy X11 tray-icon support, make
